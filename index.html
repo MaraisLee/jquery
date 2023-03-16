@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스터디</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background: #333;
+      }
+      .box {
+        width: 900px;
+        height: 500px;
+        background: yellow;
+        margin: 0 auto;
+      }
+      .big {
+        width: 500px;
+        height: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <a>로고</a>
+      <h1>제목</h1>
+      <nav>메뉴</nav>
+    </div>
+  </body>
+</html>
+<script>
+  // Pure JavaScript
+  window.onload = function () {
+    // js 선택하기
+    const box = document.querySelector(".box");
+
+    // box 에 css 적용하기(옥지은 피처링)
+    // box.style.width = "400px";
+    // box.style.height = "300px";
+
+    // box 에 css 객체 적용하기 : 적용 어려움.
+    // box 에 css 클래스 적용하기(미리 만들어둔 css 코드)
+    // box.classList.add("big");
+
+    box.addEventListener("click", function () {
+      // box 에 css 클래스 제거하기
+      // box.classList.remove("big");
+      // css 클래스 토글 시키기
+      box.classList.toggle("big");
+      //css 클래스 있는지 없는지 검사 : true, false
+      alert(box.classList.contains("big"));
+    });
+  };
+
+  // jQuery
+  $(document).ready(function () {
+    // jQuery 선택하기
+    const box = $(".box");
+
+    // box 에 css 적용하기
+    // box.css("width", 200);
+    // box.css("height", 300);
+
+    // box 에 css 객체 적용하기
+    // box.css({
+    //   width: 200,
+    //   height: 300,
+    // });
+
+    // box 에 css 클래스 적용하기(미리 만들어둔 css 코드)
+    // box.addClass("big");
+
+    box.click(function () {
+      // box 에 css 클래스 제거하기
+      //   box.removeClass("big");
+      //css 클래스 토글 시키기
+      // box.toggleClass("big");
+      //css 클래스 있는지 없는지 검사 : true, false
+      // alert(box.hasClass("big"));
+    });
+  });
+</script>
