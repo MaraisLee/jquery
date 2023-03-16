@@ -16,7 +16,6 @@
       }
       .box {
         width: 900px;
-        height: 500px;
         background: yellow;
         margin: 0 auto;
         transition: all 0.5s;
@@ -28,6 +27,7 @@
       .gallery {
         display: flex;
         flex-wrap: wrap;
+        align-items: flex-end;
       }
       .gallery > li {
         width: 25%;
@@ -59,32 +59,29 @@
       // html을 넣기
       // wrap.innerHTML = data;
 
+      return; // 아래 구문 실행하지 마라.
+
       // 외부데이터 연동
       await fetch(api)
-        .then((res) => {
-          //   response 데이터를 json 형태로 변환
-          return res.json();
-        })
+        .then((res) => res.json()) //   response 데이터를 json 형태로 변환
         .then((data) => {
-          console.log(data);
           data = data.splice(0, 20);
-          let html = `<ul class="gallery">`;
-
+          let html = "<ul class=gallery>";
           for (let i = 0; i < data.length; i++) {
-            // html += "<li>";
-            // html += data[i].name;
-            // html += "</li>";
             html += `
-            <li>
-              <h2>${data[i].name}</h2>
-              <div>
-              <img src=${data[i].image.url} alt='' width="200" height="200"/>
-              </div>
-            </li>
+                <li>
+                    <h2>
+                        ${data[i].name}
+                    </h2>
+                    <div>
+                        <img src=${data[i].image.url} width="200" height="200" />
+                    </div>
+                </li>
             `;
           }
           html += "</ul>";
 
+          wrap.textContent = html;
           wrap.innerHTML = html;
 
           // json 데이터를 문자열로 만들어서
@@ -105,6 +102,34 @@
       // wrap.text(data);
       // html을 넣기
       // wrap.html(data);
+
+      // 외부데이터 연동
+      $.ajax({
+        url: api,
+      })
+        .done((res) => {
+          let data = res;
+          console.log(data);
+          data = data.splice(0, 20);
+          let html = "<ul class=gallery>";
+          for (let i = 0; i < data.length; i++) {
+            html += `
+                <li>
+                    <h2>
+                        ${data[i].name}
+                    </h2>
+                    <div>
+                        <img src=${data[i].image.url} width="200" height="200" />
+                    </div>
+                </li>
+            `;
+          }
+          html += "</ul>";
+
+          // wrap.text(html);
+          wrap.html(html);
+        })
+        .fail((err) => console.log(err));
     });
   });
 </script>
