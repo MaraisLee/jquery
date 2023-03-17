@@ -15,7 +15,8 @@
         background: #333;
       }
       .box {
-        width: 900px;
+        width: 400px;
+        height: 400px;
         background: yellow;
         margin: 0 auto;
         transition: all 0.5s;
@@ -28,8 +29,32 @@
 </html>
 <script>
   //html, css, js, image, video 등등 로딩완료하면 js 실행
-  window.onload = function () {};
-  
+  function fadeOut(el) {
+    // 대상.style.투명도 = 불투명
+    el.style.opacity = 1;
+    (function fade() {
+      // 대상.style.투명도 -= 0.1 감소
+      if ((el.style.opacity -= 0.1) < 0) {
+        el.style.display = "none";
+      } else {
+        // 웹브라우저 프레임갱신
+        requestAnimationFrame(fade);
+      }
+    })();
+  }
+  window.onload = function () {
+    const box = document.querySelector(".box");
+    box.addEventListener("click", function () {
+      fadeOut(box);
+    });
+  };
+
   // jquery
   // html, css, js 파일 로딩 후 js 실행
+  $(document).ready(function () {
+    const box = $(".box");
+    box.click(function () {
+      // box.slideUp();
+    });
+  });
 </script>
