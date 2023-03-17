@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>스터디</title>
     <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+      integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
     <style>
       body {
@@ -28,33 +29,18 @@
   </body>
 </html>
 <script>
-  //html, css, js, image, video 등등 로딩완료하면 js 실행
-  function fadeOut(el) {
-    // 대상.style.투명도 = 불투명
-    el.style.opacity = 1;
-    (function fade() {
-      // 대상.style.투명도 -= 0.1 감소
-      if ((el.style.opacity -= 0.1) < 0) {
-        el.style.display = "none";
-      } else {
-        // 웹브라우저 프레임갱신
-        requestAnimationFrame(fade);
-      }
-    })();
-  }
   window.onload = function () {
     const box = document.querySelector(".box");
     box.addEventListener("click", function () {
-      fadeOut(box);
+      anime({
+        targets: box,
+        translateX: 250,
+        backgroundColor: "#fff",
+        duration: 5000,
+        update: function (anim) {},
+        begin: function (anim) {},
+        complete: function (anim) {},
+      });
     });
   };
-
-  // jquery
-  // html, css, js 파일 로딩 후 js 실행
-  $(document).ready(function () {
-    const box = $(".box");
-    box.click(function () {
-      // box.slideUp();
-    });
-  });
 </script>
