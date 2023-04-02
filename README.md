@@ -1,3 +1,4 @@
 ## ✍ Study
 
-### Vanila js vs Jquery
+### - Vanila js vs Jquery
+### - Anime.js 사용법
